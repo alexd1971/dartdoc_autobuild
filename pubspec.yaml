@@ -1,15 +1,16 @@
-name: github_webhook
-description: A web server built using the shelf package.
-# version: 1.0.0
-# homepage: https://www.example.com
-# author: Aleksey Danilevskiy <email@example.com>
+name: dart_doc_autobuild
+description: The service lets you automatically build dart docs on every github repository push.
+version: 0.0.1
+homepage: https://www.example.com
+author: Aleksey Danilevskiy <alexey.danilevsky@gmail.com>
 
 environment:
-  sdk: '>=2.0.0-dev.68.0 <3.0.0'
+  sdk: '>=2.0.0 <3.0.0'
 
 dependencies:
-  args: ^1.4.2
-  shelf: ^0.7.2
+  shelf: ^0.7.3
+  meta: ^1.1.6
+  html: ^0.13.3
 
 #dev_dependencies:
 #  test: ^1.0.0
