@@ -9,7 +9,7 @@ RUN pub get --offline
 
 RUN mkdir docs
 RUN mkdir repos
-VOLUME [ "/app/docs", "/app/repos" ]
+VOLUME [ "docs:/app/docs", "repos:/app/repos" ]
 
 EXPOSE 7777
 
