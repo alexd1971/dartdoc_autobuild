@@ -17,7 +17,7 @@ class Server {
         .addMiddleware(shelf.logRequests())
         .addHandler(_processRequest);
 
-    var server = await io.serve(handler, 'localhost', 7777);
+    var server = await io.serve(handler, InternetAddress.anyIPv4, 7777);
     print('Serving at http://${server.address.host}:${server.port}');
   }
 
