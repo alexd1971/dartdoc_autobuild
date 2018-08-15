@@ -1,7 +1,8 @@
-name: dart_doc_autobuild
-description: The service lets you automatically build dart docs on every github repository push.
+name: dartdoc_autobuild
+description:
+  The service lets you automatically build dart docs on every github repository push merge pull request.
 version: 0.0.1
-homepage: https://www.example.com
+homepage: https://github.com/alexd1971/dartdoc_autobuild
 author: Aleksey Danilevskiy <alexey.danilevsky@gmail.com>
 
 environment:

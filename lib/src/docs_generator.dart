@@ -45,22 +45,21 @@ class DocsGenerator {
     }
     await includeFile.writeAsString(docsLink.outerHtml);
 
-    final htmlDoc = Document.html(
-      '<!DOCTYPE html>'
-      '<html>'
+    final htmlDoc = Document.html('<!DOCTYPE html>'
+        '<html>'
         '<head>'
-          '<title></title>'
-          '<meta  charset="utf-8">'
-          ' <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">'
+        '<title></title>'
+        '<meta  charset="utf-8">'
+        ' <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">'
         '</head>'
         '<body>'
-          '<div class="container">'
-            '<h1>Документация по пакетам проекта AFS</h1>'
-            '<dl class="dl-horizontal">'
-            '</dl>'
-          '</div>'
+        '<div class="container">'
+        '<h1>Документация по пакетам проекта AFS</h1>'
+        '<dl class="dl-horizontal">'
+        '</dl>'
+        '</div>'
         '</body>'
-      '</html>');
+        '</html>');
     htmlDoc.head.querySelector('title').text = 'AFS docs';
     htmlDoc.body.querySelector('h1').text =
         'Документация по пакетам проекта AFS';

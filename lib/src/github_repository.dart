@@ -12,10 +12,14 @@ class GithubRepository {
   /// URL для кллнирования репозитория
   final Uri cloneUrl;
 
+  /// Язык программирования для репозитория
+  final String language;
+
   /// Создает репозиторий на основании данных JSON
   GithubRepository.fromJson(Map<String, dynamic> json)
       : name = json['name'],
         description = json['description'] ?? '',
         url = Uri.parse(json['url']),
-        cloneUrl = Uri.parse(json['clone_url']);
+        cloneUrl = Uri.parse(json['clone_url']),
+        language = json['language'];
 }

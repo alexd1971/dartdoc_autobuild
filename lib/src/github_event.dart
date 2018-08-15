@@ -20,6 +20,9 @@ class GithubEventType {
   /// Событие `push`
   static const GithubEventType push = GithubEventType('push');
 
+  /// Событие `pull_request`
+  static const GithubEventType pullRequest = GithubEventType('pull_request');
+
   final String _type;
 
   /// Создает новый тип события

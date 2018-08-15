@@ -22,14 +22,33 @@ class Server {
   }
 
   Future<shelf.Response> _processRequest(shelf.Request request) async {
-    if (request.headers['x-github-event'] != 'push') {
-      return shelf.Response(HttpStatus.badRequest,
-          body: 'Unsupported github event');
+    final event = request.headers['x-github-event'];
+    final payload = json.decode(await request.readAsString());
+
+    GithubEvent githubEvent;
+    switch (event) {
+      case 'push':
+        githubEvent = GithubEvent(GithubEventType.push, payload);
+        break;
+      case 'pull_request':
+        githubEvent = GithubEvent(GithubEventType.pullRequest, payload);
+        if (githubEvent.payload['action'] != 'merge') {
+          return shelf.Response(HttpStatus.accepted,
+              body:
+                  'The service does not handle pull request action ${githubEvent.payload['action']}');
+        }
+        break;
+      default:
+        return shelf.Response(HttpStatus.badRequest,
+            body: 'Unsupported github event');
     }
-    final body = json.decode(await request.readAsString());
-    final githubEvent = GithubEvent(GithubEventType.push, body);
     final githubRepository =
         GithubRepository.fromJson(githubEvent.payload['repository']);
+    if (githubRepository.language != 'Dart') {
+      return shelf.Response(HttpStatus.unsupportedMediaType,
+          body:
+              'The service does not support language ${githubRepository.language}');
+    }
     DocsGenerator(githubRepository)
       ..generate()
       ..rebuidIndex();
