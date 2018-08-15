@@ -27,6 +27,8 @@ class Server {
 
     GithubEvent githubEvent;
     switch (event) {
+      case 'ping':
+        return shelf.Response(HttpStatus.ok, body: 'pong');
       case 'push':
         githubEvent = GithubEvent(GithubEventType.push, payload);
         break;

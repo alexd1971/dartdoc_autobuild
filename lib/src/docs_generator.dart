@@ -60,9 +60,12 @@ class DocsGenerator {
         '</div>'
         '</body>'
         '</html>');
-    htmlDoc.head.querySelector('title').text = 'AFS docs';
-    htmlDoc.body.querySelector('h1').text =
-        'Документация по пакетам проекта AFS';
+    htmlDoc.head.querySelector('title').text = String.fromEnvironment(
+        'DARTDOC_AUTOBUILD_INDEX_TITLE',
+        defaultValue: 'Index page');
+    htmlDoc.body.querySelector('h1').text = String.fromEnvironment(
+        'DARTDOC_AUTOBUILD_INDEX_HEADER',
+        defaultValue: 'Documentation index');
     final includeDir = Directory('docs/include');
     await for (FileSystemEntity file in includeDir.list()) {
       htmlDoc.body.querySelector('dl').append(Comment(
