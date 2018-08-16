@@ -9,9 +9,9 @@ import 'github_event.dart';
 import 'github_repository.dart';
 import 'docs_generator.dart';
 
-/// Сервер, обслуживающий PushEvents с github
+/// Webhook, обслуживающий события с github
 class GithubWebhook {
-  /// Запускает сервер
+  /// Запускает webhook
   Future start() async {
     var handler = const shelf.Pipeline()
         .addMiddleware(shelf.logRequests())
