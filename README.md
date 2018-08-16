@@ -16,11 +16,9 @@
 
 Команда для запуска:
 
-`docker run --name dart_docs -v /path/to/repositories/dir:/app/repos -v /path/to/documentation/dir:/app/docs -p <port>:7777 alexd1971/dartdoc_autobuild`
+`docker run --name dart_docs -v repos:/app/repos -v /var/www/docs:/app/docs -p <port>:7777 alexd1971/dartdoc_autobuild`
 
-`/path/to/repositories/dir` -- путь к директории, куда будут клонироваться и где поддерживаться в актуальном состоянии репозитории пакетов
-
-`/path/to/documentation/dir` -- путь к директории, где будет формироваться документация по пакетам и индекс
+`/var/www/docs` -- путь к директории, где будет формироваться документация по пакетам и индекс; эта директория должна обслуживаться web-сервером для получения доступа к документации
 
 `port` -- порт, на котором будет слушать webhook; этот порт может быть произвольным, главное, чтобы к нему было настроено проксирование извне. На этот порт будут отправляться запросы с github
 
