@@ -14,7 +14,7 @@
 
 Хотя существует возможность непосредственного запуска сервиса, но лучше всего сервис установить и запустить в docker-контейнере, так как сам сервис не подразумевает какого-либо конфигурирования. В частности без правок кода невозможно изменить директории для репозиториев и документации, а также порт, на котором слушает сервис. Все эти настройки возможно сделать при запуске в docker-контейнере. Поэтому будем рассматривать только запуск сервиса в docker-контейнере.
 
-Команда для запуска:
+### Запуск с помощью команды
 
 `docker run --name dart_docs -e DARTDOC_AUTOBUILD_INDEX_TITLE="Title" -e DARTDOC_AUTOBUILD_INDEX_HEADER="Documentation Index" -v repos:/app/repos -v /var/www/docs:/app/docs -p <port>:7777 alexd1971/dartdoc_autobuild`
 
@@ -26,6 +26,29 @@
 
 По умолчанию заголовок индексной страницы устанавливается в `Documentation index`. Для изменения значения по умолчанию нужно установить значение переменной окружения `DARTDOC_AUTOBUILD_INDEX_HEADER`
 
+### Запуск с помощью docker-compose
+
+Для запуска с помощью `docker-compose` необходимо создать следующий файл `docker-compose.yml`:
+
+```yaml
+version: "3"
+
+services:
+  docs:
+    image: alexd1971/dartdoc_autobuild
+    container_name: dartdoc
+    environment:
+      DARTDOC_AUTOBUILD_INDEX_TITLE: "Index Title"
+      DARTDOC_AUTOBUILD_INDEX_HEADER: "Index Header"
+    volumes:
+      - repos:/app/repos
+      - /var/www/docs:/app/docs
+    ports:
+      - 7777:7777
+volumes:
+  repos:
+    driver: local
+```
 
 ##  Настройка
 
