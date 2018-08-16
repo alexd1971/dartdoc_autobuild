@@ -16,11 +16,16 @@
 
 Команда для запуска:
 
-`docker run --name dart_docs -v repos:/app/repos -v /var/www/docs:/app/docs -p <port>:7777 alexd1971/dartdoc_autobuild`
+`docker run --name dart_docs -e DARTDOC_AUTOBUILD_INDEX_TITLE="Title" -e DARTDOC_AUTOBUILD_INDEX_HEADER="Documentation Index" -v repos:/app/repos -v /var/www/docs:/app/docs -p <port>:7777 alexd1971/dartdoc_autobuild`
 
-`/var/www/docs` -- путь к директории, где будет формироваться документация по пакетам и индекс; эта директория должна обслуживаться web-сервером для получения доступа к документации
+`/var/www/docs` -- путь к директории, где будет формироваться документация по пакетам и индекс; для получения доступа к документации эта директория должна обслуживаться web-сервером.
 
 `port` -- порт, на котором будет слушать webhook; этот порт может быть произвольным, главное, чтобы к нему было настроено проксирование извне. На этот порт будут отправляться запросы с github
+
+По умолчанию `title` индексной страницы устанавливается в `Index page`. Для изменения значения по умолчанию нужно установить значение переменной окружения `DARTDOC_AUTOBUILD_INDEX_TITLE`
+
+По умолчанию заголовок индексной страницы устанавливается в `Documentation index`. Для изменения значения по умолчанию нужно установить значение переменной окружения `DARTDOC_AUTOBUILD_INDEX_HEADER`
+
 
 ##  Настройка
 
