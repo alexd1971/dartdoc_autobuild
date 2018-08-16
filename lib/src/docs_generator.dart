@@ -60,12 +60,11 @@ class DocsGenerator {
         '</div>'
         '</body>'
         '</html>');
-    htmlDoc.head.querySelector('title').text = String.fromEnvironment(
-        'DARTDOC_AUTOBUILD_INDEX_TITLE',
-        defaultValue: 'Index page');
-    htmlDoc.body.querySelector('h1').text = String.fromEnvironment(
-        'DARTDOC_AUTOBUILD_INDEX_HEADER',
-        defaultValue: 'Documentation index');
+    htmlDoc.head.querySelector('title').text =
+        Platform.environment['DARTDOC_AUTOBUILD_INDEX_TITLE'] ?? 'Index page';
+    htmlDoc.body.querySelector('h1').text =
+        Platform.environment['DARTDOC_AUTOBUILD_INDEX_HEADER'] ??
+            'Documentation index';
     final includeDir = Directory('docs/include');
     await for (FileSystemEntity file in includeDir.list()) {
       htmlDoc.body.querySelector('dl').append(Comment(
