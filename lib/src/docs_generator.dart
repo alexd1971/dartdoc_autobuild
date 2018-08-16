@@ -30,7 +30,7 @@ class DocsGenerator {
   }
 
   /// Перестраивает индекс по документации, обслуживаемой сервисом
-  Future rebuidIndex() async {
+  Future rebuildIndex() async {
     final docsLink = Element.tag('h2');
     docsLink.innerHtml = '<a href="${_repository.name}/index.html">'
         '${_repository.name}'

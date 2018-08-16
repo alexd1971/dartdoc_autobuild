@@ -53,7 +53,7 @@ class GithubWebhook {
     }
     DocsGenerator(githubRepository)
       ..generate()
-      ..rebuidIndex();
+      ..rebuildIndex();
     return shelf.Response.ok('Accepted');
   }
 }

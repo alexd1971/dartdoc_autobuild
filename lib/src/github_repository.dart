@@ -9,7 +9,7 @@ class GithubRepository {
   /// URL репозитория
   final Uri url;
 
-  /// URL для кллнирования репозитория
+  /// URL для клонирования репозитория
   final Uri cloneUrl;
 
   /// Язык программирования для репозитория
