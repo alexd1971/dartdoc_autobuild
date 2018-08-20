@@ -21,8 +21,17 @@ class DocsGenerator {
     if (await repoDir.exists()) {
       await _runShellCommand('git', ['pull'], workingDirectory: repoDir.path);
     } else {
+      Uri cloneUrl;
+      if (_repository.private) {
+        String token = Platform.environment['DARTDOC_AUTOBUILD_GITHUB_TOKEN'];
+        cloneUrl = _repository.cloneUrl.replace(
+          userInfo: '$token:x-oauth-basic'
+        );
+      } else {
+        cloneUrl = _repository.cloneUrl;
+      }
       await _runShellCommand(
-          'git', ['clone', '${_repository.cloneUrl}', repoDir.path]);
+          'git', ['clone', '$cloneUrl', repoDir.path]);
     }
     final docDir = Directory('docs/${_repository.name}');
     await _runShellCommand('dartdoc', ['--output', docDir.absolute.path],

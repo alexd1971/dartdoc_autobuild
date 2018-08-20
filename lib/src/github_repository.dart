@@ -9,6 +9,9 @@ class GithubRepository {
   /// URL репозитория
   final Uri url;
 
+  /// Признак закрытого репозитория
+  final bool private;
+
   /// URL для клонирования репозитория
   final Uri cloneUrl;
 
@@ -21,5 +24,6 @@ class GithubRepository {
         description = json['description'] ?? '',
         url = Uri.parse(json['url']),
         cloneUrl = Uri.parse(json['clone_url']),
+        private = json['private'],
         language = json['language'];
 }

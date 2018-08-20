@@ -26,6 +26,8 @@
 
 По умолчанию заголовок индексной страницы устанавливается в `Documentation index`. Для изменения значения по умолчанию нужно установить значение переменной окружения `DARTDOC_AUTOBUILD_INDEX_HEADER`
 
+Если необходимо формировать документацию на основе частных репозиториев, то необходимо сгенерировать oauth token на github и указать его в переменной окружения `DARTDOC_AUTOBUILD_GITHUB_TOKEN`
+
 ### Запуск с помощью docker-compose
 
 Для запуска с помощью `docker-compose` необходимо создать следующий файл `docker-compose.yml`:
@@ -40,6 +42,7 @@ services:
     environment:
       DARTDOC_AUTOBUILD_INDEX_TITLE: "Index Title"
       DARTDOC_AUTOBUILD_INDEX_HEADER: "Index Header"
+      DARTDOC_AUTOBUILD_GITHUB_TOKEN: <Github token should be here>
     volumes:
       - repos:/app/repos
       - /var/www/docs:/app/docs
